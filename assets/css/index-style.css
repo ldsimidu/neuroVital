@@ -3,7 +3,7 @@ body {
 }
 
 header {
-    background-image: url('../images/landscape/ladscape2.jpg'); /* Imagem de fundo */
+    background-image: url('../images/landscape/background1.png'); /* Imagem de fundo */
     background-size: cover;
     background-position: center;
     height: 90vh;
