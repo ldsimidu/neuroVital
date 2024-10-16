@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+}
+
+header {
+    background-image: url('../images/landscape/ladscape2.jpg'); /* Imagem de fundo */
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+header img {
+    max-width: 150px;
+    border-radius: 50%;
+}
+
+header button {
+    margin-top: 20px;
+}
+
+section {
+    padding: 60px 0;
+}
+
+.section-bg {
+    background-color: #f8f9fa;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.extra-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.extra-section p {
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+.extra-section button {
+    margin-top: 20px;
+}
