@@ -3,7 +3,7 @@ body {
 }
 
 header {
-    background-image: url('../images/landscape/background1.png'); /* Imagem de fundo */
+    background-image: url('../images/landscape/backgroud2.png');
     background-size: cover;
     background-position: center;
     height: 90vh;
@@ -13,6 +13,14 @@ header {
     align-items: center;
     text-align: center;
     flex-direction: column;
+}
+
+.header-title{
+    margin-top: 17%;
+}
+
+.title-neurovital{
+    font-size: 50px;
 }
 
 header img {
@@ -28,8 +36,47 @@ section {
     padding: 60px 0;
 }
 
+.one-card{
+    margin-bottom: 10%;
+}
+
+.two-card{
+    margin-bottom: 10%;
+}
+
+.three-card{
+    margin-bottom: 10%;
+}
+
+.d-section{
+    background-color: #ffffff;
+}
+
 .section-bg {
-    background-color: #f8f9fa;
+    background-color: #ffa600;
+    color: rgb(255, 255, 255);
+}
+
+.section-title{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-size: 70px;
+}
+
+.section-subtitle{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.pre-footer{
+    background-color: #434b53;
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 footer {
@@ -51,4 +98,90 @@ footer {
 
 .extra-section button {
     margin-top: 20px;
+}
+
+.extra-section:nth-child(1),
+.extra-section:nth-child(3) {
+    flex-direction: row-reverse;
+}
+
+.extra-section:nth-child(2) {
+    flex-direction: row;
+}
+
+.desc{
+    font-size: 25px;
+}
+
+.btn-custom {
+    background: linear-gradient(45deg, #ff7f50, #ffeb3b);
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-custom2 {
+    background: linear-gradient(45deg, #ffffff, #ffb428);
+    color: rgb(71, 71, 71);
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-custom:hover {
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-custom2:hover {
+    color: rgb(107, 107, 107);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-custom:active {
+    color: white;
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-custom2:active {
+    color: rgb(71, 71, 71);
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 768px) {
+    .btn-custom {
+        width: 100%;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-title {
+        margin-top: 40%;
+    }
+
+    header {
+        height: 60vh; 
+    }
+
+    .header-title h1 {
+        font-size: 1.5rem; 
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 10px 20px; 
+    }
 }
