@@ -1,95 +1,106 @@
-const questionario = document.getElementById('questionario');
-const comecarBtn = document.getElementById('comecar');
 
-let perguntas = [
-    {
-        pergunta: "O acesso à tecnologia melhora minha capacidade de aprender novos conceitos?",
-        opcoes: ["Concordo totalmente", "Concordo", "Nem concordo nem discordo", "Discordo", "Discordo totalmente"]
-    },
-    {
-        pergunta: "Sinto que a tecnologia aumenta minha capacidade de concentração.",
-        opcoes: ["Concordo totalmente", "Concordo", "Nem concordo nem discordo", "Discordo", "Discordo totalmente"]
-    },
-    {
-        pergunta: "A tecnologia me ajuda a organizar melhor minhas tarefas diárias.",
-        opcoes: ["Concordo totalmente", "Concordo", "Nem concordo nem discordo", "Discordo", "Discordo totalmente"]
-    },
-    {
-        pergunta: "Sinto que uso mais informações de forma crítica ao acessar a tecnologia.",
-        opcoes: ["Concordo totalmente", "Concordo", "Nem concordo nem discordo", "Discordo", "Discordo totalmente"]
-    },
-    {
-        pergunta: "O uso constante de dispositivos digitais afeta negativamente minha memória.",
-        opcoes: ["Concordo totalmente", "Concordo", "Nem concordo nem discordo", "Discordo", "Discordo totalmente"]
-    },
-    {
-        pergunta: "A tecnologia facilita a colaboração com outras pessoas em projetos.",
-        opcoes: ["Concordo totalmente", "Concordo", "Nem concordo nem discordo", "Discordo", "Discordo totalmente"]
-    },
-    {
-        pergunta: "Sinto que me distraio facilmente quando uso a tecnologia.",
-        opcoes: ["Concordo totalmente", "Concordo", "Nem concordo nem discordo", "Discordo", "Discordo totalmente"]
-    },
-    {
-        pergunta: "O acesso à informação online melhora minha compreensão de assuntos complexos.",
-        opcoes: ["Concordo totalmente", "Concordo", "Nem concordo nem discordo", "Discordo", "Discordo totalmente"]
-    },
-    {
-        pergunta: "A tecnologia me ajuda a desenvolver habilidades de resolução de problemas.",
-        opcoes: ["Concordo totalmente", "Concordo", "Nem concordo nem discordo", "Discordo", "Discordo totalmente"]
-    },
-    {
-        pergunta: "Sinto que passo muito tempo navegando em conteúdos que não são relevantes para mim.",
-        opcoes: ["Concordo totalmente", "Concordo", "Nem concordo nem discordo", "Discordo", "Discordo totalmente"]
-    }
+document.addEventListener('DOMContentLoaded', function () {
+    const navbarContainer = document.getElementById('navbar-container');
+    
+    fetch('../components/navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            navbarContainer.innerHTML = data;
+        })
+        .catch(error => console.error('Erro ao carregar a navbar:', error));
+});
+
+const questions = [
+    "A tecnologia melhora minha capacidade de concentração no trabalho ou nos estudos.",
+    "O uso frequente de dispositivos tecnológicos afeta negativamente minha memória.",
+    "A tecnologia aumenta minha capacidade de processar informações rapidamente.",
+    "Eu sinto que a tecnologia reduz minha capacidade de pensar de maneira profunda e reflexiva."
 ];
 
-let pontuacao = 0;
-let perguntaAtual = 0;
+let currentQuestionIndex = 0;
+let score = 0;
 
-function mostrarPergunta(indice) {
-    questionario.innerHTML = `
-        <p class="pergunta">${perguntas[indice].pergunta}</p>
-        <div class="form-check">
-            ${perguntas[indice].opcoes.map((opcao, index) => `
-                <input class="form-check-input" type="radio" name="resposta${indice}" id="opcao${indice}${index}" value="${index + 1}">
-                <label class="form-check-label" for="opcao${indice}${index}">${opcao}</label>
-            `).join('')}
-        </div>
-        <button id="continuar" class="btn btn-primary mt-3">Continuar</button>
-    `;
+const startButton = document.getElementById('startButton');
+const nextButton = document.getElementById('nextButton');
+const quizContainer = document.getElementById('quiz');
+const questionText = document.getElementById('questionText');
+const optionsContainer = document.getElementById('optionsContainer');
+const resultContainer = document.getElementById('result');
+const resultText = document.getElementById('resultText');
 
-    document.getElementById('continuar').addEventListener('click', () => {
-        const respostaSelecionada = document.querySelector('input[name="resposta' + indice + '"]:checked');
-        if (respostaSelecionada) {
-            pontuacao += parseInt(respostaSelecionada.value);
-            perguntaAtual++;
+// Função para mostrar uma pergunta e criar os checkboxes
+function showQuestion(index) {
+    const question = questions[index];
+    questionText.innerText = question;
 
-            if (perguntaAtual < perguntas.length) {
-                mostrarPergunta(perguntaAtual);
-            } else {
-                mostrarResultado();
-            }
-        } else {
-            alert("Por favor, selecione uma resposta antes de continuar.");
-        }
-    });
-}
+    // Limpar opções anteriores
+    optionsContainer.innerHTML = '';
 
-function mostrarResultado() {
-    let resultado;
-    if (pontuacao >= 40) {
-        resultado = "Dependência aguda";
-    } else if (pontuacao >= 25) {
-        resultado = "Dependência moderada";
-    } else {
-        resultado = "Dependência leve";
+    // Criar checkboxes
+    for (let i = 1; i <= 5; i++) {
+        const label = document.createElement('label');
+        label.innerHTML = `
+            <input type="radio" name="answer" value="${i}"> ${i} - ${
+            i === 1 ? 'discordo totalmente' :
+            i === 2 ? 'discordo' :
+            i === 3 ? 'neutro' :
+            i === 4 ? 'concordo' : 'concordo totalmente'}
+        `;
+        optionsContainer.appendChild(label);
     }
 
-    questionario.innerHTML = `<h2>Resultado:</h2><p>Você se enquadra no perfil de <strong>${resultado}</strong>.</p>`;
+    nextButton.classList.add('hidden');
 }
 
-comecarBtn.addEventListener('click', () => {
-    mostrarPergunta(0);
-    comecarBtn.style.display = 'none';
+// Função para verificar se uma resposta foi selecionada
+function getSelectedAnswer() {
+    const radios = document.querySelectorAll('input[name="answer"]');
+    for (let radio of radios) {
+        if (radio.checked) {
+            return parseInt(radio.value);
+        }
+    }
+    return null;
+}
+
+// Quando o usuário clica no botão "Começar"
+startButton.addEventListener('click', () => {
+    document.getElementById('intro').classList.add('hidden');
+    quizContainer.classList.remove('hidden');
+    showQuestion(currentQuestionIndex);
+});
+
+// Quando o usuário clica no botão "Próximo"
+nextButton.addEventListener('click', () => {
+    const answer = getSelectedAnswer();
+    if (answer === null) {
+        alert('Por favor, selecione uma resposta.');
+        return;
+    }
+
+    // Adicionar a pontuação da resposta
+    score += answer;
+
+    // Ir para a próxima pergunta ou finalizar o quiz
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        showQuestion(currentQuestionIndex);
+    } else {
+        showResult();
+    }
+});
+
+// Exibir resultado final
+function showResult() {
+    quizContainer.classList.add('hidden');
+    resultContainer.classList.remove('hidden');
+    resultText.innerText = `Sua pontuação total é: ${score}`;
+}
+
+// Monitorar se uma opção foi selecionada para exibir o botão "Próximo"
+optionsContainer.addEventListener('click', () => {
+    const answer = getSelectedAnswer();
+    if (answer !== null) {
+        nextButton.classList.remove('hidden');
+    }
 });

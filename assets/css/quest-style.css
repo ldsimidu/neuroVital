@@ -1,13 +1,35 @@
-.container {
-    margin-top: 50px;
-}
-
-.card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
     padding: 20px;
 }
-
-.pergunta {
-    font-weight: bold;
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.hidden {
+    display: none;
+}
+button {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: darkorange;
+}
+.options label {
+    display: block;
+    margin: 10px 0;
+    text-align: left;
 }
