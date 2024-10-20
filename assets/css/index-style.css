@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #121212; 
+    background-color: #101010; 
     color: #e0e0e0; 
 }
 
@@ -57,6 +57,7 @@ section {
     color: #ffffff; 
 }
 
+
 .section-title {
     display: flex;
     text-align: center;
@@ -89,15 +90,7 @@ footer {
 }
 
 .extra-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 40px 0;
-    gap: 20px;
-    text-align: center;
-}
-
-.extra-section {
+    background-color: #101010;
     display: flex;
     align-items: center;
     justify-content: center; 
