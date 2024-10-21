@@ -1,8 +1,7 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const navbarContainer = document.getElementById('navbar-container');
     
-    fetch('../components/navbar.html')
+    fetch('assets/components/navbar.html')
         .then(response => response.text())
         .then(data => {
             navbarContainer.innerHTML = data;
@@ -10,12 +9,42 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Erro ao carregar a navbar:', error));
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const navbarContainer = document.getElementById('footer-container');
+    
+    // Faz o fetch do conteúdo da navbar
+    fetch('assets/components/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            // Insere o conteúdo da navbar dentro do elemento
+            navbarContainer.innerHTML = data;
+        })
+        .catch(error => console.error('Erro ao carregar a navbar:', error));
+});
+
 const questions = [
-    "A tecnologia melhora minha capacidade de concentração no trabalho ou nos estudos.",
-    "O uso frequente de dispositivos tecnológicos afeta negativamente minha memória.",
-    "A tecnologia aumenta minha capacidade de processar informações rapidamente.",
-    "Eu sinto que a tecnologia reduz minha capacidade de pensar de maneira profunda e reflexiva."
+    "O acesso à tecnologia melhora minha capacidade de aprender novos conceitos.",
+    "Sinto que a tecnologia aumenta minha capacidade de concentração.",
+    "A tecnologia me ajuda a organizar melhor minhas tarefas diárias.",
+    "Sinto que uso mais informações de forma crítica ao acessar a tecnologia.",
+    "O uso constante de dispositivos digitais afeta negativamente minha memória.",
+    "A tecnologia facilita a colaboração com outras pessoas em projetos.",
+    "Sinto que me distraio facilmente quando uso a tecnologia.",
+    "O acesso à informação online melhora minha compreensão de assuntos complexos.",
+    "A tecnologia me ajuda a desenvolver habilidades de resolução de problemas.",
+    "Sinto que passo muito tempo navegando em conteúdos que não são relevantes para mim.",
+    "Acredito que o uso do smartphone prejudica a qualidade do meu sono.",
+    "Sinto-me mais ansioso quando estou longe do meu celular.",
+    "Uso o smartphone como uma forma de escapar de problemas.",
+    "Acredito que o uso excessivo do celular afeta meus relacionamentos interpessoais.",
+    "O celular me ajuda a me manter conectado com amigos e familiares.",
+    "Sinto-me dependente do meu celular para me sentir conectado ao mundo.",
+    "Acredito que o celular me distrai durante atividades que exigem concentração.",
+    "Uso o celular como ferramenta de trabalho.",
+    "Acredito que o celular limita minha criatividade.",
+    "Sinto-me mais produtivo quando uso o celular."
 ];
+
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -33,10 +62,8 @@ function showQuestion(index) {
     const question = questions[index];
     questionText.innerText = question;
 
-    // Limpar opções anteriores
     optionsContainer.innerHTML = '';
 
-    // Criar checkboxes
     for (let i = 1; i <= 5; i++) {
         const label = document.createElement('label');
         label.innerHTML = `
@@ -52,7 +79,6 @@ function showQuestion(index) {
     nextButton.classList.add('hidden');
 }
 
-// Função para verificar se uma resposta foi selecionada
 function getSelectedAnswer() {
     const radios = document.querySelectorAll('input[name="answer"]');
     for (let radio of radios) {
@@ -63,14 +89,12 @@ function getSelectedAnswer() {
     return null;
 }
 
-// Quando o usuário clica no botão "Começar"
 startButton.addEventListener('click', () => {
     document.getElementById('intro').classList.add('hidden');
     quizContainer.classList.remove('hidden');
     showQuestion(currentQuestionIndex);
 });
 
-// Quando o usuário clica no botão "Próximo"
 nextButton.addEventListener('click', () => {
     const answer = getSelectedAnswer();
     if (answer === null) {
@@ -78,10 +102,8 @@ nextButton.addEventListener('click', () => {
         return;
     }
 
-    // Adicionar a pontuação da resposta
     score += answer;
 
-    // Ir para a próxima pergunta ou finalizar o quiz
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestion(currentQuestionIndex);
