@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    background-image: url('../images/landscape/backgroud2.png');
+    background-image: url('../images/landscape/background3.png');
     background-size: cover;
     background-position: center;
     height: 90vh;
@@ -18,12 +18,16 @@ header {
 }
 
 .header-title {
-    margin-top: 17%;
+    margin-top: 0%;
 }
 
 .title-neurovital {
-    font-size: 50px;
+    font-size: 150px;
     color: #ffffff; 
+    background: linear-gradient(to right, #ff9900, #ffc400);
+    font-size: 90px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Para garantir que o texto fique transparente */
 }
 
 header img {
@@ -185,16 +189,12 @@ footer {
         font-size: 1rem;
     }
 
-    .header-title {
-        margin-top: 40%;
-    }
-
     header {
         height: 60vh; 
     }
 
     .header-title h1 {
-        font-size: 1.5rem; 
+        font-size: 60px; 
     }
 
     .btn {

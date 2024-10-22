@@ -23,3 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Erro ao carregar a navbar:', error));
 });
+
+document.getElementById("customButton").addEventListener("click", function() {
+    window.location.href = "tresds.html"; 
+});

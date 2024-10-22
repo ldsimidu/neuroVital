@@ -116,7 +116,20 @@ nextButton.addEventListener('click', () => {
 function showResult() {
     quizContainer.classList.add('hidden');
     resultContainer.classList.remove('hidden');
-    resultText.innerText = `Sua pontuação total é: ${score}`;
+
+    let resultadoDependencia;
+
+    if (score >= 20 && score <= 49) {
+        resultadoDependencia = 'Dependência Leve';
+    } else if (score >= 50 && score <= 79) {
+        resultadoDependencia = 'Dependência Moderada';
+    } else if (score >= 80 && score <= 100) {
+        resultadoDependencia = 'Dependência Aguda';
+    } else {
+        resultadoDependencia = 'Pontuação insuficiente para determinar dependência';
+    }
+
+    resultText.innerText = `Sua pontuação total é: ${score}. Você possui: ${resultadoDependencia}.`;
 }
 
 // Monitorar se uma opção foi selecionada para exibir o botão "Próximo"
