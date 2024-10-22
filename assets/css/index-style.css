@@ -1,7 +1,10 @@
+/* CSS atualizado para corrigir o arrasto em dispositivos móveis */
+
 body {
     margin: 0;
     background-color: #101010; 
-    color: #e0e0e0; 
+    color: #e0e0e0;
+    overflow-x: hidden; /* Impede que o site fique arrastável */
 }
 
 header {
@@ -42,9 +45,7 @@ section {
     padding: 60px 0;
 }
 
-.one-card,
-.two-card,
-.three-card {
+.one-card, .two-card, .three-card {
     margin-bottom: 10%;
 }
 
@@ -54,17 +55,17 @@ section {
 
 .section-bg {
     background: linear-gradient(to right, #ff9900, #ffc400);
-    color: #ffffff; 
+    color: #ffffff;
 }
 
 .text-gradient {
     background: linear-gradient(to right, #ff9900, #ffc400);
     font-size: 90px;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* Para garantir que o texto fique transparente */
+    -webkit-text-fill-color: transparent;
 }
 
-.image-section{
+.image-section {
     text-align: center;
 }
 
@@ -111,7 +112,7 @@ footer {
 }
 
 .extra-section img {
-    width: 450px;
+    max-width: 100%; /* Corrige o tamanho da imagem para dispositivos móveis */
     height: auto;
     margin-right: 20px;
 }
@@ -122,6 +123,7 @@ footer {
     color: #e0e0e0;
     text-align: center; 
 }
+
 .extra-section button {
     margin-top: 20px;
     background-color: #333333;
@@ -155,29 +157,19 @@ footer {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.btn-custom:hover {
+.btn-custom:hover, .btn-custom2:hover {
     color: #ffffff;
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
 }
 
-.btn-custom2:hover {
-    color: #ffffff;
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-}
-
-.btn-custom:active {
+.btn-custom:active, .btn-custom2:active {
     color: #ffffff;
     transform: scale(0.95);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.btn-custom2:active {
-    color: #ffffff;
-    transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+/* Responsividade */
 
 @media (max-width: 768px) {
     .btn-custom {
@@ -194,7 +186,7 @@ footer {
     }
 
     .header-title h1 {
-        font-size: 1.5rem; 
+        font-size: 1.5rem;
     }
 
     .btn {
